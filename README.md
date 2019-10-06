@@ -5,6 +5,8 @@
 How come the page store isn't reactive in the script tag?
 
 ```js
+// _layout.svelte
+
 let path
 
 $: if (page.path === undefined) {
