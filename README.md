@@ -18,5 +18,5 @@ $: if (page.path === undefined) {
 $: console.log('page.path:', page.path) // undefined
 $: console.log('path:', path) // Home <- cause page.path is undefined
 
-// Note: These log on the sever and client.
+// Note: These log on the sever and client, on initial page load.
 ```
