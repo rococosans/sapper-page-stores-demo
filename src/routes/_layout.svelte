@@ -6,6 +6,21 @@
 	
 	export let segment;
 
+	/**
+	 * This route (http://localhost:3000/?title=test&me=cool) returns for: $page
+	 * 
+	 * page: {
+	 * 	host: 'localhost:3000',
+	 * 	params: returns an object?,
+	 * 	path: '/',
+	 * 	query: {
+	 * 		title: 'test',
+	 * 		me: 'cool'
+	 * 	}
+	 * }
+	 * 
+	 */
+
 
 	//* EXAMPLE of unexpected behavior
 	//* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
