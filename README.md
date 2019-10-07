@@ -13,6 +13,8 @@ $: if (page.path === undefined) {
 	path = page.path
 }
 
-$: console.log('page.path:', page.path)
-$: console.log('path:', path)
+$: console.log('page.path:', page.path) // undefined
+$: console.log('path:', path) // Home <- cause page.path is undefined
+
+// Note: These log on the sever and client.
 ```
