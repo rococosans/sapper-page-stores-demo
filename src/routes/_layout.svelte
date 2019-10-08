@@ -1,17 +1,19 @@
 <script>
-  import { stores } from "@sapper/app";
+	import { stores } from "@sapper/app";
   const { preloading, page, session } = stores();
 
+	import { unslugify } from '../utils';
 	import Nav from '../components/Nav.svelte';
-	
-	export let segment;
 
 	/**
 	 * This route (http://localhost:3000/?title=test&me=cool) returns for: $page
 	 * 
 	 * page: {
 	 * 	host: 'localhost:3000',
-	 * 	params: returns an object?,
+	 * 	params: {
+	 * 		returns an object of the dynamic parameters
+	 * 		you have specified using [brackets].svelte
+	 * 	},
 	 * 	path: '/',
 	 * 	query: {
 	 * 		title: 'test',
@@ -21,30 +23,36 @@
 	 * 
 	 */
 
-
-	//* EXAMPLE of unexpected behavior
-	//* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	let path
+	export let segment;
 	
-	$: if (page.path === undefined) {
-		path = "Home"
+	//* Dynamic TITLE for head
+	//* Will be overwritten by page level <svelte:head>
+	//* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	let path;
+	
+	$: if ($page.path === '/') {
+		path = "Home";
 	} else {
-		path = page.path
+		const splitpath = $page.path.split('/');
+		const pathname = splitpath[splitpath.length - 1]
+		path = unslugify(pathname);
 	}
 
-	// $: console.log('page.path:', page.path)
-	// $: console.log('path:', path)
+	$: console.log('\n', 'page.path:', $page.path, "\n", 'path:', path);
 	//* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </script>
 
 <svelte:head>
-	<title>{$page.path === "/" ? "Home" : $page.path}</title>
+	<title>{$page.path === "/" ? "Home" : path}</title>
 </svelte:head>
 
 <Nav {segment}/>
 
 <p>
 	<strong>$page.path:</strong> {$page.path}
+</p>
+<p>
+	<strong>title:</strong> {path}
 </p>
 
 <main>

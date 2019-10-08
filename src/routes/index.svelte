@@ -1,8 +1,6 @@
 <script>
   import { stores } from "@sapper/app";
   const { page } = stores();
-
-  console.log("page:", $page.path);
 </script>
 
 <h1>Great success!</h1>
