@@ -32,8 +32,8 @@
 		path = page.path
 	}
 
-	$: console.log('page.path:', page.path)
-	$: console.log('path:', path)
+	// $: console.log('page.path:', page.path)
+	// $: console.log('path:', path)
 	//* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </script>
 
